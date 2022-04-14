@@ -3,7 +3,6 @@ using UnityEngine;
 public class Platform : MonoBehaviour {
 
 
-
     private void OnCollisionExit(Collision collision) {
 
         if (collision.gameObject.CompareTag("Player")) {
