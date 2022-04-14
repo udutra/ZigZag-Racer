@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlataformSpawner : MonoBehaviour {
 
     public GameObject platformPrefab;
-    public Transform lastPlataform;
+    public Transform lastPlataform, platformsParent;
     public Vector3 lastPosition;
     public Vector3 newPosition;
     public bool stop;
@@ -14,31 +14,16 @@ public class PlataformSpawner : MonoBehaviour {
         StartCoroutine(SpawnPlataforms());
     }
 
-    private void Update() {
-        /*if (Input.GetKeyDown(KeyCode.Space)) {
-            SpawnPlataforms();
-        }*/
-
-        
-
-    }
-
     private IEnumerator SpawnPlataforms() {
         while (!stop) {
             GeneratePosition();
-            Instantiate(platformPrefab, newPosition, Quaternion.identity);
+            Instantiate(platformPrefab, newPosition, Quaternion.identity, platformsParent);
             lastPosition = newPosition;
 
             yield return new WaitForSeconds(0.1f);
         }
 
     }
-
-    /*private void SpawnPlataforms() {
-        GeneratePosition();
-        Instantiate(plataformPrefab, newPosition, Quaternion.identity);
-        lastPosition = newPosition;
-    }*/
 
     private void GeneratePosition() {
         newPosition = lastPosition;

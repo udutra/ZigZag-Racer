@@ -29,8 +29,6 @@ public class GameManager : MonoBehaviour {
     public void GameOver() {
         platformSpawner.SetActive(false);
         Invoke(nameof(ReloadLevel), 1f);
-
-        //gameStarted = false;
     }
 
     private void ReloadLevel() {
