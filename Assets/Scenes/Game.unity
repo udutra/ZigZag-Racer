@@ -1005,6 +1005,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1092,6 +1093,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 543450652323961186}
   smoothValue: 5
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a6600cbeac16cd4796d81b5f17c7aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colors:
+  - {r: 0.40000004, g: 1, b: 0.78823537, a: 0}
+  - {r: 1, g: 0.90588236, b: 0.2509804, a: 0}
+  - {r: 0.09803922, g: 0.09803922, b: 0.09803922, a: 0}
+  - {r: 1, g: 0.1764706, b: 0.42745098, a: 0}
+  - {r: 0.05490196, g: 0.99215686, b: 1, a: 0}
 --- !u!1 &1417304871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,6 +1857,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car - sedanSports
       objectReference: {fileID: 0}
+    - target: {fileID: 4925296066132863826, guid: 2506f1851d6d3cb46ac0589e0aecd8a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5231849595905230818, guid: 2506f1851d6d3cb46ac0589e0aecd8a0, type: 3}
+      propertyPath: pickUpEffect
+      value: 
+      objectReference: {fileID: 2881602898045635628, guid: 27546bf4c7695b946b7a9d8d85f47dad, type: 3}
     - target: {fileID: 5697609889456206312, guid: 2506f1851d6d3cb46ac0589e0aecd8a0, type: 3}
       propertyPath: m_RootOrder
       value: 2

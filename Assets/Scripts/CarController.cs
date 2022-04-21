@@ -4,6 +4,7 @@ public class CarController : MonoBehaviour {
 
     [SerializeField] private bool movingLeft = true;
     [SerializeField] private bool firstInput = true;
+    public GameObject pickUpEffect;
     public float moveSpeed;
 
 
@@ -49,6 +50,8 @@ public class CarController : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Diamond")) {
             GameManager.instance.IncrementScore("diamond");
+            Instantiate(pickUpEffect, other.transform.position, pickUpEffect.transform.rotation);
+            //go.GetComponent<ParticleSystem>().Play();
             other.gameObject.SetActive(false);
         }
     }

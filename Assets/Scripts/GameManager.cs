@@ -88,8 +88,6 @@ public class GameManager : MonoBehaviour {
     public void IncrementScore(string item) {
         int val;
 
-        Debug.Log(item);
-
         switch (item) {
             case "time": {
                     val = timeScore;
@@ -106,7 +104,7 @@ public class GameManager : MonoBehaviour {
                     break;
                 }
         }
-        Debug.Log(val);
+
         score += val;
         scoreText.text = score.ToString();
     }
