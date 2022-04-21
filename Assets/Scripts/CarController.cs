@@ -45,4 +45,11 @@ public class CarController : MonoBehaviour {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Diamond")) {
+            GameManager.instance.IncrementScore("diamond");
+            other.gameObject.SetActive(false);
+        }
+    }
 }
