@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-    
+
     public static GameManager instance;
 
     private int score = 0;
     private int highScore;
+    [SerializeField] private int adCounter = 0;
     private AudioSource audioSource;
     [SerializeField] private int timeScore, diamondScore;
 
@@ -19,8 +20,8 @@ public class GameManager : MonoBehaviour {
     public TextMeshProUGUI scoreText, highScoreText;
     public AudioClip[] gameMusic;
 
-    
-    
+
+
 
     private void Awake() {
         if (instance == null) {
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour {
     }
     private void Start() {
         GetHighScore();
+        CheckAdCount();
     }
 
     private void Update() {
@@ -54,10 +56,27 @@ public class GameManager : MonoBehaviour {
         platformSpawner.SetActive(false);
         StopCoroutine(nameof(UpdaterScore));
         SaveHighScore();
-        Invoke(nameof(ReloadLevel), 1f);
+
+        //show ad
+        //#if UNITY_ANDROID
+        //AdsManager.instance.ShowAd();
+        //AdsManager.instance.ShowRewaredAd();
+        //#endif
+
+        //Invoke(nameof(ReloadLevel), 1f);
+
+
+        if (adCounter >=4) {
+            adCounter = 0;
+            PlayerPrefs.SetInt("AdCount", adCounter);
+            AdsManager.instance.ShowRewaredAd();
+        }
+        else {
+            Invoke(nameof(ReloadLevel), 1f);
+        }
     }
 
-    private void ReloadLevel() {
+    public void ReloadLevel() {
         SceneManager.LoadScene("Game");
     }
 
@@ -95,7 +114,7 @@ public class GameManager : MonoBehaviour {
                 }
             case "diamond": {
                     val = diamondScore;
-                    audioSource.PlayOneShot(gameMusic[2],0.2f);
+                    audioSource.PlayOneShot(gameMusic[2], 0.2f);
 
                     break;
                 }
@@ -107,5 +126,17 @@ public class GameManager : MonoBehaviour {
 
         score += val;
         scoreText.text = score.ToString();
+    }
+
+    private void CheckAdCount() {
+        if (PlayerPrefs.HasKey("AdCount")) {
+            adCounter = PlayerPrefs.GetInt("AdCount");
+            adCounter++;
+
+            PlayerPrefs.SetInt("AdCount", adCounter);
+        }
+        else {
+            PlayerPrefs.SetInt("AdCount", 0);
+        }
     }
 }

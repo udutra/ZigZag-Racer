@@ -4,6 +4,7 @@ public class CarController : MonoBehaviour {
 
     [SerializeField] private bool movingLeft = true;
     [SerializeField] private bool firstInput = true;
+    [SerializeField] private bool gameOver = false;
     public GameObject pickUpEffect;
     public float moveSpeed;
 
@@ -15,7 +16,10 @@ public class CarController : MonoBehaviour {
         }
 
         if (transform.position.y <= -2) {
-            GameManager.instance.GameOver();
+            if (!gameOver) {
+                gameOver = true;
+                GameManager.instance.GameOver();
+            }
         }
     }
 
